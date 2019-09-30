@@ -1,5 +1,5 @@
 //
-//  BaseVC.swift
+//  BaseCVCell.swift
 //  YouTubeClone
 //
 //  Created by Sanath Kumar M S on 30/09/19.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-class BaseVC: UIViewController {
+class BaseCVCell: UICollectionViewCell {
     
 }

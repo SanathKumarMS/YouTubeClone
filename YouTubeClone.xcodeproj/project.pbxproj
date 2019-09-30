@@ -14,6 +14,8 @@
 		547630932341FF04000BF9F7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547630922341FF04000BF9F7 /* BaseVC.swift */; };
 		547630952341FF14000BF9F7 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547630942341FF14000BF9F7 /* BaseVM.swift */; };
 		547630972341FF2A000BF9F7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547630962341FF29000BF9F7 /* HomeVC.swift */; };
+		5476309923420131000BF9F7 /* BaseCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5476309823420131000BF9F7 /* BaseCVCell.swift */; };
+		5476309B23420151000BF9F7 /* HomeCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5476309A23420151000BF9F7 /* HomeCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		547630922341FF04000BF9F7 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		547630942341FF14000BF9F7 /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
 		547630962341FF29000BF9F7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		5476309823420131000BF9F7 /* BaseCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCVCell.swift; sourceTree = "<group>"; };
+		5476309A23420151000BF9F7 /* HomeCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				547630862341FDC3000BF9F7 /* LaunchScreen.storyboard */,
 				547630922341FF04000BF9F7 /* BaseVC.swift */,
 				547630962341FF29000BF9F7 /* HomeVC.swift */,
+				5476309823420131000BF9F7 /* BaseCVCell.swift */,
+				5476309A23420151000BF9F7 /* HomeCVCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,9 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5476307E2341FDC2000BF9F7 /* AppDelegate.swift in Sources */,
+				5476309923420131000BF9F7 /* BaseCVCell.swift in Sources */,
 				547630972341FF2A000BF9F7 /* HomeVC.swift in Sources */,
 				547630952341FF14000BF9F7 /* BaseVM.swift in Sources */,
 				547630932341FF04000BF9F7 /* BaseVC.swift in Sources */,
+				5476309B23420151000BF9F7 /* HomeCVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
