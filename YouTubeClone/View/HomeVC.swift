@@ -10,13 +10,31 @@ import UIKit
 
 class HomeVC: BaseVC {
     @IBOutlet private weak var collectionView: UICollectionView!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Home"
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
+    
 }
 
 // MARK: - UICollectionViewDelegate
 
+extension HomeVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 200)
+        let height = (view.frame.width - 16 - 16) * 9/16
+        return CGSize(width: self.view.frame.width, height: height + 16 + 68)
     }
 }
 
@@ -32,8 +50,9 @@ extension HomeVC: UICollectionViewDataSource {
         
         cell.thumbnailImageView.backgroundColor = .gray
         cell.profileImageView.backgroundColor = .lightGray
-        cell.titleLabel.backgroundColor = .purple
-        cell.subtitleTextView.backgroundColor = .red
+        cell.titleLabel.text = "deadmau5 - Let Go Feat. Grabbitz (Cube 2.1)"
+        cell.subtitleTextView.text = "deadmau5VEVO • 20,695,367 views • 16 Dec 2016"
+        cell.subtitleTextView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         return cell
     }
     
