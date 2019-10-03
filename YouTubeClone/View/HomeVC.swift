@@ -16,8 +16,9 @@ class HomeVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Home"
+        self.tabBarController?.navigationItem.title = "Home"
         navigationController?.navigationBar.barStyle = .black
+        collectionView.delaysContentTouches = false
     }
     
     
@@ -29,12 +30,22 @@ extension HomeVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCVCell else { return }
+        cell.backgroundColor = .red
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCVCell else { return }
+        cell.backgroundColor = .white
+    }
 }
 
 extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width - 16 - 16) * 9/16
-        return CGSize(width: self.view.frame.width, height: height + 16 + 68)
+        return CGSize(width: self.view.frame.width, height: height + 16 + 80)
     }
 }
 
@@ -50,7 +61,7 @@ extension HomeVC: UICollectionViewDataSource {
         
         cell.thumbnailImageView.backgroundColor = .gray
         cell.profileImageView.backgroundColor = .lightGray
-        cell.titleLabel.text = "deadmau5 - Let Go Feat. Grabbitz (Cube 2.1)"
+        cell.titleLabel.text = "deadmau5 - Let Go Feat. Grabbitz (Cube 2.1) --------------"
         cell.subtitleTextView.text = "deadmau5VEVO • 20,695,367 views • 16 Dec 2016"
         cell.subtitleTextView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         return cell

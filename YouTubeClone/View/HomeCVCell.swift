@@ -14,4 +14,14 @@ class HomeCVCell: BaseCVCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleTextView: UITextView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        thumbnailImageView.layer.shadowColor = UIColor.gray.cgColor
+        thumbnailImageView.layer.shadowOffset = CGSize(width: 20, height: 20)
+        thumbnailImageView.layer.shadowOpacity = 0.5
+        thumbnailImageView.layer.shadowRadius = 5
+//        thumbnailImageView.layer.shouldRasterize = true
+//        thumbnailImageView.layer.rasterizationScale = UIScreen.main.scale
+    }
 }
