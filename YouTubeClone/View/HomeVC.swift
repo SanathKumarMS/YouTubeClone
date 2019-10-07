@@ -10,15 +10,57 @@ import UIKit
 
 class HomeVC: BaseVC {
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var slideInMenuCollectionView: UICollectionView!
+    private var viewModel = HomeVM()
+    let blackView = UIView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.navigationItem.title = "Home"
+//        self.tabBarController?.navigationItem.title = "Home"
+        self.navigationItem.title = "Home"
         navigationController?.navigationBar.barStyle = .black
         collectionView.delaysContentTouches = false
+        viewModel.fetchVideos { [weak self] (isSuccess) in
+            if isSuccess == true {
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            }
+        }
+        setupUI()
+    }
+    
+    @IBAction func handleMore(_ sender: Any) {
+        print("Handle More")
+        if let window = UIApplication.shared.keyWindow {
+           
+            window.addSubview(blackView)
+//            window.willMove(toSuperview: blackView)
+            
+            UIView.animate(withDuration: 0.5) {
+                self.blackView.alpha = 1
+                self.slideInMenuCollectionView.frame = CGRect(x: 0, y: self.view.frame.height - 400, width: self.slideInMenuCollectionView.frame.width, height: 400)
+            }
+        }
+    }
+    
+    @objc func handleDismiss() {
+        UIView.animate(withDuration: 0.5) {
+            self.blackView.alpha = 0
+            self.slideInMenuCollectionView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.slideInMenuCollectionView.frame.width, height: 0)
+        }
+    }
+    
+    func setupUI() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+        blackView.addGestureRecognizer(tap)
+        blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        blackView.frame = view.bounds
+        blackView.alpha = 0
+        slideInMenuCollectionView.frame = CGRect(x: 0, y: view.frame.maxY, width: view.frame.width, height: 0)
     }
     
     
@@ -53,7 +95,8 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
 
 extension HomeVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return viewModel.videos.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,9 +104,13 @@ extension HomeVC: UICollectionViewDataSource {
         
         cell.thumbnailImageView.backgroundColor = .gray
         cell.profileImageView.backgroundColor = .lightGray
-        cell.titleLabel.text = "deadmau5 - Let Go Feat. Grabbitz (Cube 2.1) --------------"
-        cell.subtitleTextView.text = "deadmau5VEVO • 20,695,367 views • 16 Dec 2016"
-        cell.subtitleTextView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        cell.titleLabel.text = viewModel.videos[indexPath.item].title
+        if let channelName = viewModel.videos[indexPath.item].channel?.name {
+            cell.subtitleTextView.text = channelName
+        }
+        if let profileImageName = viewModel.videos[indexPath.item].channel?.profileImageName {
+            cell.profileImageView.loadImageWithURL(urlString: profileImageName)
+        }
         return cell
     }
     
